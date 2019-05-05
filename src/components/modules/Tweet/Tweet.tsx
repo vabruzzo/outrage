@@ -4,11 +4,15 @@ import CircleIcon from '../../elements/CircleIcon/CircleIcon';
 import styles from './Tweet.module.scss';
 
 interface ITweetProps {
-  text: string;
+  tweet: {
+    text: string;
+    tweet_id: string;
+    metadata: { title: string; description: string; image: string } | null;
+  };
   date: string;
 }
 
-const Tweet: StatelessComponent<ITweetProps> = ({ text, date }) => (
+const Tweet: StatelessComponent<ITweetProps> = ({ tweet, date }) => (
   <div className={styles.tweet}>
     <div>
       <CircleIcon color={generateRandomColorHex()} />
@@ -21,9 +25,20 @@ const Tweet: StatelessComponent<ITweetProps> = ({ text, date }) => (
       <p
         className={styles.text}
         dangerouslySetInnerHTML={{
-          __html: text,
+          __html: tweet.text,
         }}
       />
+      {tweet.metadata && (
+        <>
+          <div className={styles.imageContainer}>
+            <img className={styles.image} src={tweet.metadata.image} />
+          </div>
+          <div className={styles.metadataText}>
+            <p className={styles.title}>{tweet.metadata.title}</p>
+            <p className={styles.description}>{tweet.metadata.description}</p>
+          </div>
+        </>
+      )}
     </div>
   </div>
 );

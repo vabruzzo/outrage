@@ -10,6 +10,10 @@
     font-size: 0.875em;
     margin: 0;
   }
+
+  .title {
+    margin-bottom: 0.5em;
+  }
 }
 
 .content {
@@ -25,4 +29,27 @@
 
 .userDate {
   color: rgba(0, 0, 0, 0.7);
+}
+
+.imageContainer {
+  margin-top: 1em;
+}
+
+.image {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 0.85714em;
+  border-top-right-radius: 0.85714em;
+  width: 100%;
+}
+
+.metadataText {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom-left-radius: 0.85714em;
+  border-bottom-right-radius: 0.85714em;
+  margin-top: -5px;
+  padding: 1em;
+}
+
+.title {
+  font-weight: 700;
 }
