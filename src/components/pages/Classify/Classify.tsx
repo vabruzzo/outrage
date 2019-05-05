@@ -1,4 +1,4 @@
-import React, { StatelessComponent, useRef } from 'react';
+import React, { StatelessComponent, useState, useRef } from 'react';
 import { RouteComponentProps } from '@reach/router';
 import { getDate } from '../../../utils/date';
 import Tweet from '../../modules/Tweet/Tweet';
@@ -17,6 +17,7 @@ const Classify: StatelessComponent<IClassifyProps> = ({
   currentTweet,
   setCurrentTweet,
 }) => {
+  const [hasImageError, setHasImageError] = useState(false);
   const sectionRef = useRef(null);
 
   const handleButtonClick = () => {
@@ -25,6 +26,11 @@ const Classify: StatelessComponent<IClassifyProps> = ({
       sectionRef.current.focus();
     }
     setCurrentTweet();
+    setHasImageError(false);
+  };
+
+  const handleImageError = () => {
+    setHasImageError(true);
   };
 
   return (
@@ -33,10 +39,24 @@ const Classify: StatelessComponent<IClassifyProps> = ({
       <h3>Is the following social media message expressing moral outrage?</h3>
       {tweets && currentTweet < tweets.length ? (
         <>
-          <Tweet tweet={tweets[currentTweet]} date={getDate()} />
+          <Tweet
+            tweet={tweets[currentTweet]}
+            date={getDate()}
+            handleImageError={handleImageError}
+          />
           <div className={styles.buttons}>
-            <Button text="😒 Not outrageous" onClick={handleButtonClick} />
-            <Button text="😾 Outrageous! 😡" onClick={handleButtonClick} />
+            {hasImageError ? (
+              <p className={styles.error}>
+                This tweet does not appear to have loaded properly, please skip
+                it.
+                <Button text="Skip tweet" onClick={handleButtonClick} />
+              </p>
+            ) : (
+              <>
+                <Button text="😒 Not outrageous" onClick={handleButtonClick} />
+                <Button text="😾 Outrageous! 😡" onClick={handleButtonClick} />
+              </>
+            )}
           </div>
         </>
       ) : tweets ? (

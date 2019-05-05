@@ -7,9 +7,14 @@ import styles from './Tweet.module.scss';
 interface ITweetProps {
   tweet: TweetType;
   date: string;
+  handleImageError: () => void;
 }
 
-const Tweet: StatelessComponent<ITweetProps> = ({ tweet, date }) => (
+const Tweet: StatelessComponent<ITweetProps> = ({
+  tweet,
+  date,
+  handleImageError,
+}) => (
   <div className={styles.tweet}>
     <div>
       <CircleIcon color={generateRandomColorHex()} />
@@ -29,7 +34,11 @@ const Tweet: StatelessComponent<ITweetProps> = ({ tweet, date }) => (
         <>
           <div className={styles.imageContainer}>
             {tweet.metadata.image && (
-              <img className={styles.image} src={tweet.metadata.image} />
+              <img
+                className={styles.image}
+                src={tweet.metadata.image}
+                onError={handleImageError}
+              />
             )}
           </div>
           <div className={styles.metadataText}>
