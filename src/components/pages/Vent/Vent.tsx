@@ -14,14 +14,11 @@ class Vent extends Component<IVentProps, IVentState> {
     hasSubmitted: false,
   };
 
-  handleSubmit = (event: MouseEvent) => {
-    event.preventDefault();
-    this.setState({ hasSubmitted: true });
-  };
-
   handleVentAgainClick = (event: MouseEvent) => {
     this.setState({ hasSubmitted: false });
   };
+
+  setHasSubmitted = () => this.setState({ hasSubmitted: true });
 
   render() {
     return (
@@ -51,7 +48,7 @@ class Vent extends Component<IVentProps, IVentState> {
               you're feeling in a “free expression” way: it can help us learn
               about outrage and also help you feel better.{' '}
             </p>
-            <VentForm handleSubmit={this.handleSubmit} />
+            <VentForm setHasSubmitted={this.setHasSubmitted} />
           </>
         )}
       </section>

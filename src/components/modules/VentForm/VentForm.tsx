@@ -3,26 +3,51 @@ import Button from '../../elements/Button/Button';
 import styles from './VentForm.module.scss';
 
 interface IVentFormProps {
-  handleSubmit: (event: MouseEvent) => void;
+  setHasSubmitted: () => void;
 }
 
 interface IVentFormState {
+  hasError: boolean;
+  vent: string;
+  ventSubject: string;
   [x: string]: any;
 }
 
 class VentForm extends Component<IVentFormProps, IVentFormState> {
+  state = {
+    hasError: false,
+    vent: '',
+    ventSubject: '',
+  };
+
   handleInputChange = (event: ChangeEvent) => {
     const target = event.target as HTMLButtonElement;
     this.setState({
       [target.name]: target.value,
+      hasError: false,
     });
   };
 
+  handleSubmit = (event: MouseEvent) => {
+    const { vent, ventSubject } = this.state;
+    event.preventDefault();
+
+    if (!vent || !ventSubject) {
+      this.setState({ hasError: true });
+      return;
+    }
+
+    this.props.setHasSubmitted();
+  };
+
   render() {
-    const { handleSubmit } = this.props;
+    const { hasError } = this.state;
 
     return (
       <form className={styles.form}>
+        <p className={styles.error}>
+          {hasError && 'Please fill out all fields before submitting.'}
+        </p>
         <label htmlFor="ventSubject" className={styles.label}>
           Subject
         </label>
@@ -42,7 +67,7 @@ class VentForm extends Component<IVentFormProps, IVentFormState> {
           className={styles.textarea}
           onChange={this.handleInputChange}
         />
-        <Button onClick={handleSubmit} text="Submit" type="submit" />
+        <Button onClick={this.handleSubmit} text="Submit" type="submit" />
       </form>
     );
   }

@@ -5,10 +5,17 @@
   width: 100%;
 }
 
+.error {
+  color: red;
+  font-size: 0.875em;
+  font-weight: 700;
+  margin: 0;
+}
+
 .label {
   display: inline-block;
   font-weight: 700;
-  margin-top: 1.5em;
+  margin-top: 1em;
 }
 
 .input,
