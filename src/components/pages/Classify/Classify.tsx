@@ -6,7 +6,13 @@ import Button from '../../elements/Button/Button';
 import styles from './Classify.module.scss';
 
 interface IClassifyProps extends RouteComponentProps {
-  tweets: { text: string; id: string }[] | null;
+  tweets:
+    | {
+        text: string;
+        tweet_id: string;
+        metadata: { title: string; description: string; image: string } | null;
+      }[]
+    | null;
 }
 
 interface IClassifyState extends RouteComponentProps {
@@ -28,13 +34,11 @@ class Classify extends Component<IClassifyProps, IClassifyState> {
 
     return (
       <>
-        <h2>Is this tweet outrageous?</h2>
+        <h2>Help AI learn how to detect outrage</h2>
+        <h3>Is the following social media message expressing moral outrage?</h3>
         {tweets && currentTweet < tweets.length ? (
           <>
-            <Tweet
-              text={tweets[currentTweet] && tweets[currentTweet].text}
-              date={getDate()}
-            />
+            <Tweet tweet={tweets[currentTweet]} date={getDate()} />
             <div className={styles.buttons}>
               <Button text="😒 Not outrageous" onClick={this.handleClick} />
               <Button text="😾 Outrageous! 😡" onClick={this.handleClick} />
