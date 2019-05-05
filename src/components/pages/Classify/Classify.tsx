@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { RouteComponentProps } from '@reach/router';
 import { getDate } from '../../../utils/date';
 import Tweet from '../../modules/Tweet/Tweet';
@@ -15,41 +15,30 @@ interface IClassifyProps extends RouteComponentProps {
     | null;
 }
 
-interface IClassifyState extends RouteComponentProps {
-  currentTweet: number;
-}
+const Classify: FunctionComponent<IClassifyProps> = ({ tweets }) => {
+  const [currentTweet, setCurrentTweet] = useState(0);
 
-class Classify extends Component<IClassifyProps, IClassifyState> {
-  state = {
-    currentTweet: 0,
+  const handleClick = () => {
+    setCurrentTweet(prevCurrentTweet => prevCurrentTweet + 1);
   };
 
-  handleClick = () => {
-    this.setState(prevState => ({ currentTweet: prevState.currentTweet + 1 }));
-  };
-
-  render() {
-    const { tweets } = this.props;
-    const { currentTweet } = this.state;
-
-    return (
-      <>
-        <h2>Help AI learn how to detect outrage</h2>
-        <h3>Is the following social media message expressing moral outrage?</h3>
-        {tweets && currentTweet < tweets.length ? (
-          <>
-            <Tweet tweet={tweets[currentTweet]} date={getDate()} />
-            <div className={styles.buttons}>
-              <Button text="😒 Not outrageous" onClick={this.handleClick} />
-              <Button text="😾 Outrageous! 😡" onClick={this.handleClick} />
-            </div>
-          </>
-        ) : tweets ? (
-          <p>load more tweets</p>
-        ) : null}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <h2>Help AI learn how to detect outrage</h2>
+      <h3>Is the following social media message expressing moral outrage?</h3>
+      {tweets && currentTweet < tweets.length ? (
+        <>
+          <Tweet tweet={tweets[currentTweet]} date={getDate()} />
+          <div className={styles.buttons}>
+            <Button text="😒 Not outrageous" onClick={handleClick} />
+            <Button text="😾 Outrageous! 😡" onClick={handleClick} />
+          </div>
+        </>
+      ) : tweets ? (
+        <p>load more tweets</p>
+      ) : null}
+    </>
+  );
+};
 
 export default Classify;

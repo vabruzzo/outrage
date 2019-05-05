@@ -7,7 +7,10 @@ const NavLinks: FunctionComponent = () => {
 
   return (
     <div>
-      <span className={styles.menu} onClick={() => setVeggieOpen(!veggieOpen)}>
+      <span
+        className={styles.menu}
+        onClick={() => setVeggieOpen(prevVeggieOpen => !prevVeggieOpen)}
+      >
         Menu
       </span>
       <ul
