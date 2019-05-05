@@ -1,0 +1,13 @@
+.buttonLink {
+  border: 1px solid #373737;
+  color: #2d2e2f;
+  display: inline-block;
+  padding: 12px;
+  transition: background-color 200ms linear;
+
+  &:hover,
+  &:focus {
+    background-color: white;
+    text-decoration: none;
+  }
+}

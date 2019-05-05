@@ -1,0 +1,23 @@
+.ventForm {
+}
+
+.form {
+  width: 100%;
+}
+
+.label {
+  display: inline-block;
+  font-weight: 700;
+  margin-top: 1.5em;
+}
+
+.input,
+textarea {
+  margin-top: 0.25em;
+  width: 100%;
+}
+
+.textarea {
+  height: 200px;
+  resize: vertical;
+}

@@ -1,0 +1,28 @@
+.tweet {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  padding: 1em;
+  white-space: pre-wrap;
+
+  p {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.875em;
+    margin: 0;
+  }
+}
+
+.content {
+  margin: 0 0 0 1em;
+}
+
+.tweetHeader {
+}
+
+.tweeter {
+  font-weight: 700;
+}
+
+.userDate {
+  color: rgba(0, 0, 0, 0.7);
+}
