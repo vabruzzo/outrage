@@ -9,16 +9,33 @@ import Header from '../modules/Header/Header';
 import Footer from '../modules/Footer/Footer';
 import styles from './App.module.scss';
 
-class App extends Component {
-  state = { tweets: null };
+export type Tweet = {
+  text: string;
+  tweet_id: string;
+  metadata?: { title?: string; description?: string; image?: string } | null;
+};
+
+interface IAppProps {}
+
+interface IAppState {
+  tweets: Tweet[] | null;
+  currentTweet: number;
+}
+
+class App extends Component<IAppProps, IAppState> {
+  state = { tweets: null, currentTweet: 0 };
 
   async componentDidMount() {
     const tweets = await mockGet();
     this.setState({ tweets });
   }
 
+  setCurrentTweet = () => {
+    this.setState(prevState => ({ currentTweet: prevState.currentTweet + 1 }));
+  };
+
   render() {
-    const { tweets } = this.state;
+    const { tweets, currentTweet } = this.state;
 
     return (
       <div className={styles.app}>
@@ -26,7 +43,12 @@ class App extends Component {
         <main className={styles.main}>
           <Router primary={false}>
             <Home path="/" />
-            <Classify path="/classify" tweets={tweets} />
+            <Classify
+              path="/classify"
+              tweets={tweets}
+              currentTweet={currentTweet}
+              setCurrentTweet={this.setCurrentTweet}
+            />
             <Vent path="/vent" />
             <About path="/about" />
           </Router>

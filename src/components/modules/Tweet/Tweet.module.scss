@@ -38,6 +38,7 @@
 
 .image {
   border: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 0;
   border-top-left-radius: 0.85714em;
   border-top-right-radius: 0.85714em;
   width: 100%;
@@ -47,7 +48,7 @@
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom-left-radius: 0.85714em;
   border-bottom-right-radius: 0.85714em;
-  margin-top: -5px;
+  margin-top: -4px;
   padding: 1em;
 }
 

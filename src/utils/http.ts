@@ -1,8 +1,9 @@
 import tweets from '../data/tweets';
+import { Tweet } from '../components/App/App';
 
 const get = () => null;
 
-const mockGet = async () => {
+const mockGet = async (): Promise<Tweet[]> => {
   const subsetTweets = tweets;
   return new Promise(function(resolve, reject) {
     setTimeout(function() {

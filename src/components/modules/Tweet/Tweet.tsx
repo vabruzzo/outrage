@@ -1,14 +1,11 @@
 import React, { StatelessComponent } from 'react';
 import { generateRandomColorHex } from '../../../utils/color';
 import CircleIcon from '../../elements/CircleIcon/CircleIcon';
+import { Tweet as TweetType } from '../../App/App';
 import styles from './Tweet.module.scss';
 
 interface ITweetProps {
-  tweet: {
-    text: string;
-    tweet_id: string;
-    metadata: { title: string; description: string; image: string } | null;
-  };
+  tweet: TweetType;
   date: string;
 }
 
