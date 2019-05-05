@@ -5,18 +5,16 @@ import styles from './NavLinks.module.scss';
 const NavLinks: FunctionComponent = () => {
   const [veggieOpen, setVeggieOpen] = useState(false);
 
-  const toggleVeggieOpen = () => setVeggieOpen(!veggieOpen);
-
   return (
     <div>
-      <span className={styles.menu} onClick={toggleVeggieOpen}>
+      <span className={styles.menu} onClick={() => setVeggieOpen(!veggieOpen)}>
         Menu
       </span>
       <ul
         className={`${styles.linkList} ${
           veggieOpen ? styles.mobileActive : ''
         }`}
-        onClick={toggleVeggieOpen}
+        onClick={() => setVeggieOpen(false)}
       >
         <li className={styles.linkLi}>
           <Link to="/">Home</Link>
