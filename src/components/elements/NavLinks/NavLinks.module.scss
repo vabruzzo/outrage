@@ -1,6 +1,14 @@
 .linkList {
   margin: 0;
   padding: 0;
+
+  @media only screen and (max-width: 600px) {
+    display: none;
+
+    &.mobileActive {
+      display: block;
+    }
+  }
 }
 
 .linkLi {
@@ -22,5 +30,29 @@
       border-top: 4px solid #f0f0f0;
       text-decoration: none;
     }
+  }
+
+  @media only screen and (max-width: 600px) {
+    display: block;
+
+    a:hover,
+    a:focus,
+    a[aria-current='page'] {
+      border-top: none;
+      text-decoration: none;
+    }
+  }
+}
+
+.menu {
+  color: #f0f0f0;
+  cursor: pointer;
+  display: none;
+  font-size: 1.2em;
+  font-weight: 700;
+  padding: 12px;
+
+  @media only screen and (max-width: 600px) {
+    display: block;
   }
 }
