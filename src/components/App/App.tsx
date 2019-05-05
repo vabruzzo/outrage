@@ -12,7 +12,12 @@ import styles from './App.module.scss';
 export type Tweet = {
   text: string;
   tweet_id: string;
-  metadata?: { title?: string; description?: string; image?: string } | null;
+  metadata?: {
+    description?: string | null;
+    image?: string | null;
+    title?: string | null;
+    url?: string | null;
+  } | null;
 };
 
 interface IAppProps {}

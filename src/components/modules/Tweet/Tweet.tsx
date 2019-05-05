@@ -28,7 +28,9 @@ const Tweet: StatelessComponent<ITweetProps> = ({ tweet, date }) => (
       {tweet.metadata && (
         <>
           <div className={styles.imageContainer}>
-            <img className={styles.image} src={tweet.metadata.image} />
+            {tweet.metadata.image && (
+              <img className={styles.image} src={tweet.metadata.image} />
+            )}
           </div>
           <div className={styles.metadataText}>
             <p className={styles.title}>{tweet.metadata.title}</p>
