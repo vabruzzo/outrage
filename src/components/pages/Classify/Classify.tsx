@@ -18,11 +18,10 @@ const Classify: StatelessComponent<IClassifyProps> = ({
   setCurrentTweet,
 }) => {
   const [hasImageError, setHasImageError] = useState(false);
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const handleButtonClick = () => {
     if (sectionRef.current) {
-      //@ts-ignore
       sectionRef.current.focus();
     }
     setCurrentTweet();

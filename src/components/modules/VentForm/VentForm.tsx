@@ -40,8 +40,7 @@ const VentForm: FunctionComponent<IVentFormProps> = ({ setHasSubmitted }) => {
         name="ventSubject"
         className={styles.input}
         type="text"
-        onChange={(event: ChangeEvent) =>
-          //@ts-ignore
+        onChange={(event: ChangeEvent<HTMLInputElement>) =>
           setVentSubject(event.currentTarget.value)
         }
       />
@@ -52,8 +51,9 @@ const VentForm: FunctionComponent<IVentFormProps> = ({ setHasSubmitted }) => {
         id="vent"
         name="vent"
         className={styles.textarea}
-        //@ts-ignore
-        onChange={(event: ChangeEvent) => setVent(event.currentTarget.value)}
+        onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
+          setVent(event.currentTarget.value)
+        }
       />
       <Button onClick={handleSubmit} text="Submit" type="submit" />
     </form>
